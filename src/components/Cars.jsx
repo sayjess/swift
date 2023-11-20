@@ -19,16 +19,16 @@ export default function Cars(){
 
 
     const vanElements = cars.map(car => (
-        <Link key={car.id} to={`/cars/${car.id}`}>
-            <div className="car-tile">
+        <div key={car.id} className="car-tile">
+            <Link to={`/cars/${car.id}`}>
                 <img src={car.imageUrl} />
                 <div className="car-info">
                     <h3>{car.name}</h3>
                     <p>${car.price}<span>/day</span></p>
                 </div>
                 <i className={`car-type ${car.type} selected`}>{car.type}</i>
-            </div>
-        </Link>
+            </Link>
+        </div>
     ))
 
     return (
