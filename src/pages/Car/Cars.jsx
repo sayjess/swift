@@ -18,7 +18,7 @@ export default function Cars(){
     }, [])
 
 
-    const vanElements = cars.map(car => (
+    const carElements = cars.map(car => (
         <div key={car.id} className="car-tile">
             <Link to={`/cars/${car.id}`}>
                 <img src={car.imageUrl} />
@@ -35,7 +35,7 @@ export default function Cars(){
         <div className="car-list-container">
             <h1>Explore our car options</h1>
             <div className="car-list">
-                {vanElements}
+                {carElements}
             </div>
         </div>
     )

@@ -24,7 +24,6 @@ scrollbar-width: none;
   flex-direction: column;
 }
 
-
 header {
   height: 110px;
   display: flex;
@@ -50,12 +49,6 @@ header a {
 header a:hover {
   color: #161616;
   text-decoration: underline;
-}
-
-a.active-link {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #161616;
 }
 
 main {
@@ -176,7 +169,7 @@ footer {
 
 /*** VAN PAGES ***/
 .car-list-container {
-  padding-inline: 23px
+  padding-inline: 23px;
 }
 
 .car-list {
@@ -323,4 +316,42 @@ i[class*='car-type-'] {
   color: #161616;
   text-decoration: underline;
   font-weight: 600;
+}
+
+.host-car-link-wrapper {
+  color: unset;
+  text-decoration: unset;
+}
+
+.host-cars-list {
+  padding-inline: 26px;
+}
+
+.host-cars-title {
+  padding-inline: 26px;
+}
+
+.host-car-single {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 15px;
+  padding-block: 18px;
+  padding-left: 24px;
+}
+
+.host-car-single > img {
+  height: 70px;
+  border-radius: 5px;
+  margin-right: 17px;
+}
+
+.host-car-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-block: 10px;
+}
+
+.host-car-info p {
+  margin-block: 10px;
 }
