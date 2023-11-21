@@ -24,6 +24,7 @@ scrollbar-width: none;
   flex-direction: column;
 }
 
+
 header {
   height: 110px;
   display: flex;
@@ -49,6 +50,12 @@ header a {
 header a:hover {
   color: #161616;
   text-decoration: underline;
+}
+
+a.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
 }
 
 main {
