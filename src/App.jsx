@@ -15,7 +15,12 @@ import HostCars from "./pages/Host/HostCars"
 import HostCarDetail from "./pages/Host/HostCarDetail"
 import Reviews from "./pages/Host/Reviews"
 
+import Details from "./pages/ListedCar/Details"
+import Pricing from "./pages/ListedCar/Pricing"
+import Photos from "./pages/ListedCar/Photos"
+
 import "./server"
+import ListedCarLayout from "./components/ListedCarLayout"
 
 
   /**
@@ -46,7 +51,13 @@ function App() {
             <Route index element={<Dashboard />}/>
             <Route path="income" element={<Income />}/>
             <Route path="cars" element={<HostCars />} />
-            <Route path="cars/:id" element={<HostCarDetail />} />
+            
+            <Route path="cars/:id/" element={<ListedCarLayout />}>
+              <Route index element={<Details />}/>
+              <Route path="pricing" element={<Pricing />}/>
+              <Route path="photos" element={<Photos />}/>
+            </Route>
+              
             <Route path="reviews" element={<Reviews />}/>
           </Route>
         </Route>
