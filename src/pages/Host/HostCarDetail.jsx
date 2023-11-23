@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Link, useParams} from "react-router-dom"
+import { Link, Outlet, useParams, NavLink} from "react-router-dom"
 
 export default function HostCarDetail(){
 
@@ -18,6 +18,12 @@ export default function HostCarDetail(){
 
     if (!currentCar) {
         return <h1>Loading...</h1>
+    }
+
+    const activeStyle = {
+        fontWeight: "bold",
+        textDecoration: "underline",
+        color: "#161616"
     }
 
     return (
@@ -41,6 +47,21 @@ export default function HostCarDetail(){
                         <h4>${currentCar.price}/day</h4>
                     </div>
                 </div>
+
+                <nav className="host-car-detail-nav">
+                    <NavLink 
+                    end
+                    style={({isActive}) => isActive ? activeStyle : null}
+                    to=".">Details</NavLink>
+                    <NavLink 
+                    style={({isActive}) => isActive ? activeStyle : null}
+                    to="pricing">Pricing</NavLink>
+                    <NavLink 
+                    style={({isActive}) => isActive ? activeStyle : null}
+                    to="photos">Photos</NavLink>
+                    
+                </nav>
+                <Outlet />
             </div>
         </section>
     )

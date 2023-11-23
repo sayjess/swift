@@ -15,26 +15,30 @@ import HostCars from "./pages/Host/HostCars"
 import HostCarDetail from "./pages/Host/HostCarDetail"
 import Reviews from "./pages/Host/Reviews"
 
-import Details from "./pages/ListedCar/Details"
-import Pricing from "./pages/ListedCar/Pricing"
-import Photos from "./pages/ListedCar/Photos"
+import HostCarInfo from "./pages/Host/HostCarInfo"
+import HostCarPricing from "./pages/Host/HostCarPricing"
+import HostCarPhotos from "./pages/Host/HostCarPhotos"
 
 import "./server"
-import ListedCarLayout from "./components/ListedCarLayout"
 
 
   /**
-   * Challenge: add the /host/vans and /host/vans/:id routes, as well
-   * as the "Vans" link in the Host navbar.
+   * Challenge: Add the routes necessary so we can access
+   * /host/vans/:id/pricing and /host/vans/:id/photos.
    * 
-   * For now, just create the stubbed-out version of the pages (i.e.
-   * components that just render an <h1>). Don't worry about adding
-   * navigation from /host/vans to /host/vans/:id yet - the link to
-   * /host/vans is enough for now.
+   * Add stubbed-out components in separate files for
+   * these routes (e.g. <h2>Pricing view here</h2>). I already
+   * made the `HostVanInfo.jsx`, `HostVanPricing.jsx` and
+   * `HostVanPhotos.jsx` files for you, but they're empty.
    * 
-   * When deciding whether or not to use nested routes, keep in mind
-   * what will/won't be shared between these two pages. See the Figma
-   * design file (or the screenshots) to help guide your choice.
+   * Don't forget: you'll need to use a special tool from
+   * React Router so we can keep the top info (and 
+   * eventually the navbar we build) on the page while going
+   * from nested route to nested route. This will require some
+   * slight changes to HostVanDetail.jsx
+   * 
+   * Since we don't have the navbar yet, you can test them
+   * by manually navigating to e.g. /host/vans/1/pricing.
    */
 
 function App() {
@@ -52,10 +56,10 @@ function App() {
             <Route path="income" element={<Income />}/>
             <Route path="cars" element={<HostCars />} />
             
-            <Route path="cars/:id/" element={<ListedCarLayout />}>
-              <Route index element={<Details />}/>
-              <Route path="pricing" element={<Pricing />}/>
-              <Route path="photos" element={<Photos />}/>
+            <Route path="cars/:id/" element={<HostCarDetail />}>
+              <Route index element={<HostCarInfo />} />
+              <Route path="pricing" element={<HostCarPricing />}/>
+              <Route path="photos" element={<HostCarPhotos />}/>
             </Route>
               
             <Route path="reviews" element={<Reviews />}/>
