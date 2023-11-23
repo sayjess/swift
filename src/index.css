@@ -422,3 +422,27 @@ i[class*='car-type-'] {
   text-decoration: underline;
   font-weight: 700;
 }
+
+.host-car-detail-info > h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+}
+.host-car-detail-info > h4 > span {
+  font-weight: 500;
+}
+
+.host-car-price {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.host-car-price > span {
+  font-size: 16px;
+  color: #4D4D4D;
+}
+
+.host-car-detail-image {
+  height: 100px;
+  border-radius: 5px;
+}

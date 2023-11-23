@@ -1,20 +1,14 @@
-import React from "react"
-import { useParams } from "react-router-dom"
+import { useOutletContext } from "react-router-dom"
+
 export default function HostCarInfo() {
-    const params = useParams()
-
-    const [car, setCar] = React.useState(null)
-
-    React.useEffect(() => {
-        fetch(`/api/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setCar(data.vans))
-    }, [])
-    
+    const [currentCar] = useOutletContext()
     
     return (
-        <>
-            {car && <p>Name: {car.name}</p>}
-        </>
+        <section className="host-car-detail-info">
+            <h4>Name: <span>{currentCar.name}</span></h4>
+            <h4>Category: <span>{currentCar.type}</span></h4>
+            <h4>Description: <span>{currentCar.description}</span></h4>
+            <h4>Visibility: <span>Public</span></h4>
+        </section>
     )
 }

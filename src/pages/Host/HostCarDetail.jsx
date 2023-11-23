@@ -61,7 +61,7 @@ export default function HostCarDetail(){
                     to="photos">Photos</NavLink>
                     
                 </nav>
-                <Outlet />
+                <Outlet context={[currentCar]}/>
             </div>
         </section>
     )
