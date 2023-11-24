@@ -1,11 +1,6 @@
 import { Link, useSearchParams } from "react-router-dom"
 import React from "react"
 
-/**
- * Challenge: Wrap the contents of the "van-tile" div in a 
- * Link that sends the user to `/vans/${van-id-here}`.
- */
-
 
 export default function Cars(){
 
