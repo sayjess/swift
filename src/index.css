@@ -184,6 +184,15 @@ footer {
   padding-inline: 23px
 }
 
+.car-list-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.car-list-filter-buttons > a {
+  margin-right: 15px;
+}
+
 .car-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
