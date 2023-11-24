@@ -23,7 +23,7 @@ export default function Cars(){
 
     const carElements = cars.filter(car => typeFilter ? car.type === typeFilter : true).map(car => (
         <div key={car.id} className="car-tile">
-            <Link to={`/cars/${car.id}`}>
+            <Link to={`${car.id}`}>
                 <img src={car.imageUrl} />
                 <div className="car-info">
                     <h3>{car.name}</h3>
