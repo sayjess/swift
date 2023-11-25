@@ -1,16 +1,32 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { getHostVans } from "../../api"
 
 export default function HostCars() {
     const [cars, setCars] = React.useState([])
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
 
     React.useEffect(() => {
-        fetch("/api/host/vans")
-            .then(res => res.json())
-            .then(data => setCars(data.vans))
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getHostVans()
+                if(data){
+                    setCars(data)
+                } else {
+                    throw new Error(error)
+                }
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadVans()
     }, [])
 
-    const hostCarsEls = cars.map(car => (
+    const hostCarsEls = cars && cars.map(car => (
         <Link
             to={car.id}
             key={car.id}
@@ -26,12 +42,20 @@ export default function HostCars() {
         </Link>
     ))
 
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
+
     return (
         <section>
             <h1 className="host-cars-title">Your listed cars</h1>
             <div className="host-cars-list">
                 {
-                    cars.length > 0 ? (
+                    cars && cars.length > 0 ? (
                         <section>
                             {hostCarsEls}
                         </section>

@@ -1,16 +1,44 @@
 import React from "react"
 import { useParams, Link, useLocation } from "react-router-dom"
+import { getVans } from "../../api"
 
 
 export default function CarDetail() {
     const [car, setCar] = React.useState(null)
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
     const params = useParams()
     const location = useLocation()
+
     React.useEffect(() => {
-        fetch(`/api/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setCar(data.vans))
-    }, [])
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans(params.id)
+                if(data){
+                    setCar(data)
+                }
+                else {
+                    throw new Error(error)
+                }
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadVans()
+    }, [params.id])
+
+    
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+    
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
 
     // just to handle the back button incase there is no state/the state name is changed
     const prevUrl = location.state?.search || ""

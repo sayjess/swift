@@ -1,23 +1,44 @@
 import React from "react"
 
 import { Link, Outlet, useParams, NavLink} from "react-router-dom"
+import { getHostVans } from "../../api"
 
 export default function HostCarDetail(){
 
     const [currentCar, setCurrentCar] = React.useState(null)
-    const params = useParams()
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
+    const { id } = useParams()
     
 
     React.useEffect(() => {
-        fetch(`/api/host/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setCurrentCar(data.vans))
-    }, [])
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getHostVans(id)
+                if(data){
+                    setCurrentCar(data)
+                } else {
+                    throw new Error(error)
+                }
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
 
+        loadVans()
+    }, [id])
 
+    console.log(currentCar)
 
-    if (!currentCar) {
+    if (loading) {
         return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
     }
 
     const activeStyle = {
@@ -34,7 +55,7 @@ export default function HostCarDetail(){
                 className="back-button"
             >&larr; <span>Back to all cars</span></Link>
 
-            <div className="host-car-detail-layout-container">
+            {currentCar && <div className="host-car-detail-layout-container">
                 <div className="host-car-detail">
                     <img src={currentCar.imageUrl} />
                     <div className="host-car-detail-info-text">
@@ -62,7 +83,7 @@ export default function HostCarDetail(){
                     
                 </nav>
                 <Outlet context={[currentCar]}/>
-            </div>
+            </div>}
         </section>
     )
 }
