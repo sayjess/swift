@@ -96,6 +96,18 @@ footer {
   transform: translate(1px, 1px);
 }
 
+header .login-icon {
+  height: 30px;
+  width: 30px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+
+
 /*** HOME PAGE ***/
 .home-container {
   display: flex;
@@ -513,4 +525,22 @@ i[class*='car-type-'] {
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.login-form > button:disabled {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+
+}
+
+.login-invalid-creds, .login-first {
+  color: red;
+}
+
+.login-invalid-creds {
+  font-size: .75rem;
+  margin-top: .5em;
+  
 }
